@@ -2,19 +2,27 @@
 
 Shared Claude Code user settings and statusline for a team environment.
 
-Installs a custom `settings.json` and a `statusline.sh` script into `~/.claude/`.
+Installs a custom `settings.json` and a statusline script into `~/.claude/`.
 
 ## What's included
 
 - **`settings.json`** — Claude Code user settings with a curated set of plugins enabled and sensible defaults (`sonnet` model, auto-compact on, away summary off).
-- **`statusline.sh`** — A status line script that displays the active model, current working directory, rate-limit usage (5h and weekly), and context window percentage with color-coded thresholds.
+- **`statusline.sh`** — Status line script for Mac/Linux (requires `jq`).
+- **`statusline.ps1`** — Status line script for Windows (PowerShell, no extra dependencies).
 
-## Requirements
-
-- [Claude Code](https://claude.ai/code) installed
-- `jq` (used by `statusline.sh` to parse the JSON payload from the CLI)
+Both statusline scripts display the active model, current working directory, rate-limit usage (5h and weekly), and context window percentage with color-coded thresholds.
 
 ## Installation
+
+The installer will ask you what to install:
+
+| Option | What happens |
+|--------|-------------|
+| **1) Statusline only** | Copies the statusline script, adds/updates only the `statusLine` key in your existing `settings.json` |
+| **2) Full settings + statusline** | Copies the statusline script and replaces `settings.json` (existing file is backed up) |
+| **3) Full settings only** | Replaces `settings.json` without installing the statusline |
+
+### Mac / Linux
 
 ```bash
 git clone <repo-url> claude-setup
@@ -22,10 +30,21 @@ cd claude-setup
 ./install.sh
 ```
 
-The script will:
+Requires `jq` when using the statusline (or when installing full settings without statusline).
 
-1. Copy `statusline.sh` to `~/.claude/statusline.sh` and make it executable.
-2. Back up any existing `~/.claude/settings.json` to `settings.json.bak`, then copy the new one in place.
+### Windows
+
+Open PowerShell and run:
+
+```powershell
+git clone <repo-url> claude-setup
+cd claude-setup
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+No extra dependencies required on Windows — the statusline uses PowerShell's built-in JSON support.
+
+> **Note:** ANSI colors in the statusline require Windows Terminal, VS Code terminal, or any other VT100-capable terminal (standard on Windows 10+).
 
 ## Statusline format
 
