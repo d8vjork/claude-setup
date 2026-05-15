@@ -1,0 +1,18 @@
+{
+  "name": "claude-setup",
+  "owner": {
+    "name": "Ruben R",
+    "email": "ruben@opensoutheners.com"
+  },
+  "metadata": {
+    "description": "Ruben's personal Claude Code marketplace.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "orchestration",
+      "source": "./orchestration",
+      "description": "Multi-agent feature workflow — an Opus planner-router that orchestrates parallel Sonnet implementer subagents, routes discovered issues into CURRENT_ISSUES.md, and splits commits with a Haiku subagent."
+    }
+  ]
+}

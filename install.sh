@@ -61,6 +61,14 @@ print(json.dumps(d, indent=2))
   fi
 
   echo "Installed settings.json -> $CLAUDE_DIR/settings.json"
+
+  # Install user-level CLAUDE.md (git rules + orchestrated-feature pointer)
+  if [ -f "$CLAUDE_DIR/CLAUDE.md" ]; then
+    echo "Backing up existing CLAUDE.md -> CLAUDE.md.bak"
+    cp "$CLAUDE_DIR/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md.bak"
+  fi
+  cp "$SCRIPT_DIR/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
+  echo "Installed CLAUDE.md -> $CLAUDE_DIR/CLAUDE.md"
 fi
 
 if ! $install_settings && $install_statusline; then

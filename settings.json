@@ -20,9 +20,16 @@
     "upgrading-expo@expo-plugins": true,
     "expo-deployment@expo-plugins": true,
     "fullstack-dev-skills@fullstack-dev-skills": true,
-    "chrome-devtools-mcp@claude-plugins-official": true
+    "chrome-devtools-mcp@claude-plugins-official": true,
+    "orchestration@claude-setup": true
   },
   "extraKnownMarketplaces": {
+    "claude-setup": {
+      "source": {
+        "source": "github",
+        "repo": "d8vjork/claude-setup"
+      }
+    },
     "expo-plugins": {
       "source": {
         "source": "github",

@@ -62,6 +62,15 @@ if ($installSettings) {
 
     $settings | ConvertTo-Json -Depth 10 | Set-Content $settingsPath -Encoding UTF8
     Write-Host "Installed settings.json -> $settingsPath"
+
+    # Install user-level CLAUDE.md (git rules + orchestrated-feature pointer)
+    $claudeMdPath = Join-Path $ClaudeDir "CLAUDE.md"
+    if (Test-Path $claudeMdPath) {
+        Write-Host "Backing up existing CLAUDE.md -> CLAUDE.md.bak"
+        Copy-Item $claudeMdPath (Join-Path $ClaudeDir "CLAUDE.md.bak") -Force
+    }
+    Copy-Item (Join-Path $ScriptDir "CLAUDE.md") $claudeMdPath -Force
+    Write-Host "Installed CLAUDE.md -> $claudeMdPath"
 }
 
 if (-not $installSettings -and $installStatusline) {
