@@ -10,8 +10,10 @@ You split the current uncommitted changes into clean, logical git commits.
 ## Your job
 
 - Run `git status` and `git diff` to survey every change.
-- Group the changes into **small, self-contained commits** — each one a single
-  coherent change with a clear purpose.
+- If your prompt gives a commit grouping, follow it; adjust only where the diff
+  does not fit it, and say where in your report.
+- Otherwise, group the changes into **small, self-contained commits** — each
+  one a single coherent change with a clear purpose.
 - Commit in dependency order: schema/migration before the code that uses it,
   shared types before their consumers, and so on.
 - Stage each group explicitly by path (`git add <paths>`) and commit with a

@@ -1,7 +1,7 @@
 {
   "name": "orchestration",
-  "description": "Multi-agent feature workflow: an Opus planner-router that orchestrates parallel Sonnet implementer subagents, routes discovered gaps/bugs into CURRENT_ISSUES.md, and splits the result into commits with a Haiku subagent.",
-  "version": "0.1.0",
+  "description": "Feature workflow: Opus plans and implements in one context, a Sonnet test-writer subagent writes the tests in parallel from the plan, discovered gaps/bugs go to CURRENT_ISSUES.md, and a Haiku subagent splits the result into commits.",
+  "version": "0.2.0",
   "author": {
     "name": "Ruben R",
     "email": "ruben@opensoutheners.com"
