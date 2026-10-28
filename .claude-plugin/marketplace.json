@@ -6,13 +6,18 @@
   },
   "metadata": {
     "description": "Ruben's personal Claude Code marketplace.",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {
       "name": "orchestration",
       "source": "./orchestration",
-      "description": "Multi-agent feature workflow — an Opus planner-router that orchestrates parallel Sonnet implementer subagents, routes discovered issues into CURRENT_ISSUES.md, and splits commits with a Haiku subagent."
+      "description": "Feature workflow — Opus plans and implements, a Sonnet subagent writes the tests in parallel, discovered issues go to CURRENT_ISSUES.md, and a Haiku subagent splits the commits."
+    },
+    {
+      "name": "changelog",
+      "source": "./changelog",
+      "description": "Keep a Changelog + SemVer guidance for CHANGELOG.md — brief one-line entries that render cleanly as GitHub releases."
     }
   ]
 }

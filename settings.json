@@ -21,7 +21,8 @@
     "expo-deployment@expo-plugins": true,
     "fullstack-dev-skills@fullstack-dev-skills": true,
     "chrome-devtools-mcp@claude-plugins-official": true,
-    "orchestration@claude-setup": true
+    "orchestration@claude-setup": true,
+    "changelog@claude-setup": true
   },
   "extraKnownMarketplaces": {
     "claude-setup": {

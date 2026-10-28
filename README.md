@@ -5,15 +5,15 @@ environment.
 
 Installs a custom `settings.json`, a user-level `CLAUDE.md`, and a statusline
 script into `~/.claude/`. The repo also doubles as a Claude Code **plugin
-marketplace** (see [Orchestration plugin](#orchestration-plugin)).
+marketplace** (see [Plugins](#plugins)).
 
 ## What's included
 
 - **`settings.json`** — Claude Code user settings with a curated set of plugins enabled and sensible defaults (`sonnet` model, auto-compact on, away summary off).
-- **`CLAUDE.md`** — user-level instructions applied to every project: git-commit rules (no co-author trailer, never push on a commit request) and a pointer to the orchestration workflow.
+- **`CLAUDE.md`** — user-level instructions applied to every project: git-commit rules (no co-author trailer, never push on a commit request) and pointers to the orchestration and changelog skills.
 - **`statusline.sh`** — Status line script for Mac/Linux (requires `jq`).
 - **`statusline.ps1`** — Status line script for Windows (PowerShell, no extra dependencies).
-- **`orchestration/`** — a bundled Claude Code plugin; this repo is its marketplace.
+- **`orchestration/`** and **`changelog/`** — bundled Claude Code plugins; this repo is their marketplace.
 
 Both statusline scripts display the active model, current working directory, rate-limit usage (5h and weekly), and context window percentage with color-coded thresholds.
 
@@ -51,35 +51,56 @@ No extra dependencies required on Windows — the statusline uses PowerShell's b
 
 > **Note:** ANSI colors in the statusline require Windows Terminal, VS Code terminal, or any other VT100-capable terminal (standard on Windows 10+).
 
-## Orchestration plugin
+## Plugins
 
-`orchestration/` is a Claude Code plugin bundled in this repo, which also acts
-as the marketplace that serves it. Installing the full `settings.json` enables
-it automatically — `settings.json` lists `claude-setup` under
-`extraKnownMarketplaces` and `orchestration@claude-setup` under
-`enabledPlugins`, so Claude Code fetches and activates the plugin from GitHub
-on next launch.
+This repo bundles Claude Code plugins and also acts as the marketplace that
+serves them. Installing the full `settings.json` enables them automatically —
+`settings.json` lists `claude-setup` under `extraKnownMarketplaces` and each
+plugin under `enabledPlugins`, so Claude Code fetches and activates them from
+GitHub on next launch.
 
-It provides:
+Without the full settings, add them by hand:
 
-- **`orchestrated-feature` skill** — a multi-agent workflow. The main session
-  (Opus) plans the change, spawns parallel Sonnet `feature-implementer`
-  subagents, routes any gaps/bugs they discover into a `CURRENT_ISSUES.md`
-  file, then splits the result into commits with a Haiku `commit-splitter`
-  subagent. It triggers automatically on multi-step feature/refactor work and
-  can be invoked explicitly with `/orchestrated-feature`.
-- **`feature-implementer` agent** (Sonnet) — implements one scoped unit of a plan.
-- **`commit-splitter` agent** (Haiku) — splits a working tree into logical commits.
+```bash
+/plugin marketplace add d8vjork/claude-setup
+/plugin install orchestration@claude-setup
+/plugin install changelog@claude-setup
+```
 
-### Testing the plugin locally before pushing
+### Orchestration
+
+- **`orchestrated-feature` skill** — the feature workflow. The main session
+  (Opus) plans the change and implements it itself, while a Sonnet
+  `test-writer` subagent writes the tests in parallel from the plan's
+  interface and behaviours. Gaps/bugs found along the way go into
+  `CURRENT_ISSUES.md`, and a Haiku `commit-splitter` subagent splits the
+  result into commits. It triggers automatically on multi-step
+  feature/refactor work and can be invoked explicitly with
+  `/orchestrated-feature`.
+- **`test-writer` agent** (Sonnet) — writes tests from the plan, without
+  reading the implementation.
+- **`feature-implementer` agent** (Sonnet) — takes large, mechanical slices
+  the main session delegates as an exception.
+- **`commit-splitter` agent** (Haiku) — splits a working tree into logical
+  commits, following the plan's grouping.
+
+### Changelog
+
+- **`changelog` skill** — Keep a Changelog + SemVer rules for `CHANGELOG.md`:
+  brief one-line entries (around 80 characters) that also render cleanly as
+  GitHub releases, and a single `First release` entry until the first version
+  ships.
+
+### Testing the plugins locally before pushing
 
 ```bash
 /plugin marketplace add /path/to/claude-setup
 /plugin install orchestration@claude-setup
+/plugin install changelog@claude-setup
 ```
 
 Once the repo is pushed to GitHub, any machine that installs the full
-`settings.json` gets the plugin with no extra steps.
+`settings.json` gets the plugins with no extra steps.
 
 ## Statusline format
 

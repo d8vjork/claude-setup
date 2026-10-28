@@ -1,0 +1,9 @@
+{
+  "name": "changelog",
+  "description": "Keep a Changelog + SemVer guidance for CHANGELOG.md: brief one-line, product-like entries that also render cleanly as GitHub releases.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Ruben R",
+    "email": "ruben@opensoutheners.com"
+  }
+}

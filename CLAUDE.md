@@ -14,7 +14,13 @@ explicit instruction given in conversation take precedence over what is below.
 ## Multi-step work
 
 For any non-trivial feature, refactor, or multi-file bug-fix, use the
-**`orchestrated-feature`** skill: plan first, orchestrate implementer
-subagents, route discovered gaps/bugs into `CURRENT_ISSUES.md`, then split
-commits. For a trivial one-line edit, skip the orchestration and just make
-the change.
+**`orchestrated-feature`** skill: plan first, implement in the main session
+while a test-writer subagent writes the tests, route discovered gaps/bugs into
+`CURRENT_ISSUES.md`, then split commits. For a small edit, skip the
+orchestration and just make the change.
+
+## Changelogs
+
+When a project has a `CHANGELOG.md`, keep it current with the **`changelog`**
+skill. If it is not installed, read it from
+<https://github.com/d8vjork/claude-setup/blob/main/changelog/skills/changelog/SKILL.md>.
