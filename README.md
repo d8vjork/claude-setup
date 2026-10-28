@@ -9,7 +9,7 @@ marketplace** (see [Plugins](#plugins)).
 
 ## What's included
 
-- **`settings.json`** — Claude Code user settings with a curated set of plugins enabled and sensible defaults (`sonnet` model, auto-compact on, away summary off).
+- **`settings.json`** — Claude Code user settings with a curated set of plugins enabled and sensible defaults (`sonnet` model, auto-compact on, away summary off), plus permissions: `acceptEdits` mode, an allowlist for read-only checks and routine local work (staging, committing, rebasing, Compose dev containers, local dev URLs), and `ask` rules for anything destructive or outward-facing (`git push`, `reset`, `rm`, `sudo`, publishing, secrets). Commands Claude Code already auto-allows are left out.
 - **`CLAUDE.md`** — user-level instructions applied to every project: git-commit rules (no co-author trailer, never push on a commit request) and pointers to the orchestration and changelog skills.
 - **`statusline.sh`** — Status line script for Mac/Linux (requires `jq`).
 - **`statusline.ps1`** — Status line script for Windows (PowerShell, no extra dependencies).

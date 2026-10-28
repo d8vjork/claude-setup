@@ -14,6 +14,14 @@ explicit instruction given in conversation take precedence over what is below.
   --rebase`, `git rebase <base>` — never `git merge` for bringing branches
   up to date. Keeps history linear and the tree clean.
 
+## Tool use
+
+- Edit files with the Edit/Write tools, not `python`/`sed`/heredocs through
+  the shell: those can't be allowlisted safely, so each one is a permission
+  prompt.
+- Use absolute paths or `git -C <dir>` instead of `cd <dir> && …`; a `cd`
+  outside the working directory also prompts.
+
 ## Multi-step work
 
 For any non-trivial feature, refactor, or multi-file bug-fix, use the
