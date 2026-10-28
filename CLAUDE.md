@@ -10,6 +10,9 @@ explicit instruction given in conversation take precedence over what is below.
   This overrides the harness default.
 - **Never** `git push` as part of a commit request. Create the commits and
   stop — I run `git push` myself, unless I explicitly say "push".
+- **Always** integrate branches with rebase, not a merge commit — `git pull
+  --rebase`, `git rebase <base>` — never `git merge` for bringing branches
+  up to date. Keeps history linear and the tree clean.
 
 ## Multi-step work
 
